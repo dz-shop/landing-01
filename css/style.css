@@ -1,0 +1,491 @@
+/* === Health Blue Light Theme === */
+:root {
+  /* === Backgrounds === */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8fbfd;
+  --surface: #ffffff;
+
+  /* === Text === */
+  --text-primary: #000000;
+  --text-secondary: #555555;
+  --text-muted: #7b7b7b;
+  --text-inverted: #ffffff;
+
+  /* === Brand Primary (Health Blue) === */
+  --primary-500: #5bbceb;
+  --primary-700: #3aa7da;
+  --primary-soft: #eaf6fd;
+
+  /* === Accent (Turquoise Action) === */
+  --accent-500: #1bafcb;
+  --accent-700: #1491a9;
+  --accent-soft: #e6f7fa;
+
+  /* === UI === */
+  --separator: #e0e0e0;
+  --outline: #e0e0e0;
+
+  /* === States === */
+  --error: #d92d20;
+  --warning: #f4a100;
+}
+
+/* === Health Blue Dark Theme === */
+:root[data-theme="dark"] {
+  /* === Backgrounds === */
+  --bg-primary: #1E1E1E;
+  --bg-secondary: #2C2C2C;
+  --surface: #2C2C2C;
+
+  /* === Text === */
+  --text-primary: #F5F5F5;
+  --text-secondary: #CCCCCC;
+  --text-muted: #AAAAAA;
+  --text-inverted: #1E1E1E;
+
+  /* === Brand Primary (Health Blue) === */
+  --primary-500: #7AC3F5;
+  --primary-700: #5bbceb;
+  --primary-soft: #2A2A2A;
+
+  /* === Accent (Turquoise Action) === */
+  --accent-500: #2ED1E0;
+  --accent-700: #1491a9;
+  --accent-soft: #2A2A2A;
+
+  /* === UI === */
+  --separator: #444444;
+  --outline: #444444;
+
+  /* === States === */
+  --error: #FF6B61;
+  --warning: #F4A100;
+}
+
+/* === Reset / Base === */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+  color: var(--text-primary);
+  font-family: "Tajawal", "Noto Naskh Arabic", "Poppins", system-ui, sans-serif;
+  background: var(--bg-primary);
+  direction: rtl;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background: linear-gradient(180deg, #ffffff 0%, #f4fbff 100%);
+  overflow-y: auto;
+}
+
+/* === Screens / Images 9x16 === */
+.screen {
+  position: relative;
+  width: min(1080px, 100vw);
+  margin: 0 auto 0px auto;
+}
+
+.screen__img {
+  width: 100%;
+  height: auto;
+  display: block;
+  /*border-radius: 12px;*/
+}
+
+/* === CTA overlay === */
+.cta-img {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: calc(clamp(16px, 3.5%, 60px) + env(safe-area-inset-bottom));
+  display: flex;
+  justify-content: center;
+  z-index: 10;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.cta-img img {
+  width: 80%;
+  max-width: 864px;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+  user-select: none;
+  -webkit-user-drag: none;
+  transition:
+    filter 0.2s ease,
+    transform 0.1s ease;
+}
+
+.cta-img:hover img {
+  filter: drop-shadow(0 0 20px var(--accent-500));
+}
+
+.cta-img:active img {
+  transform: translateY(1px);
+}
+
+/* === Links styling === */
+a {
+  color: var(--primary-500);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--accent-500);
+}
+
+/* === RTL adjustments === */
+[dir="rtl"] .screen {
+  text-align: right;
+}
+
+/* === Formulaire de commande === */
+.order-form-section {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 16px 16px;
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--separator);
+  /*border-radius: 12px 12px 0 0;
+  margin-bottom: 40px;*/
+}
+
+.form-container {
+  max-width: 500px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-title {
+  font-size: 24px;
+  margin-bottom: 0px;
+  text-align: center;
+  color: var(--text-primary);
+}
+
+.form-note {
+  font-size: 12px;
+  margin-bottom: 0px;
+  text-align: center;
+  color: var(--text-secondary);
+}
+
+form label {
+  font-size: 16px;
+  margin-bottom: 8px;
+  color: var(--text-primary);
+}
+
+form input {
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--outline);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: "Tajawal", sans-serif;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+form input::placeholder {
+  color: var(--text-secondary);
+}
+
+form input:focus {
+  outline: none;
+  border-color: var(--primary-500);
+  box-shadow: 0 0 0 3px rgba(91, 188, 235, 0.25);
+}
+form input {
+  transition: all 0.2s ease;
+}
+
+form input:hover {
+  border-color: var(--primary-500);
+}
+
+form button.btn {
+  width: 100%;
+  padding: 12px;
+  font-size: 18px;
+  background: var(--accent-500);
+  color: var(--text-inverted);
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-family: "Tajawal", sans-serif;
+  font-weight: 700;
+  transition:
+    background 0.2s ease,
+    transform 0.1s ease;
+  box-shadow: 0 8px 20px rgba(91, 188, 235, 0.3);
+}
+
+form button.btn:hover {
+  background: var(--accent-700);
+}
+
+form button.btn:active {
+  transform: translateY(1px);
+}
+
+/* Points de réassurance sous le formulaire */
+.form-points {
+  margin-top: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 16px;
+  color: var(--text-primary);
+  /*text-align: right;  RTL */
+}
+
+.form-points p {
+  margin: 0;
+  /*padding-left: 8px;  espace avant le ✔ */
+  position: relative;
+}
+
+/* Facultatif : style du check mark pour un peu plus joli */
+.form-points p::before {
+  content: "✅";
+  color: var(--accent-500);
+  position: absolute;
+  /*right: 0;*/
+}
+
+/* === Tajawal font weights === */
+.tajawal-extralight {
+  font-family: "Tajawal", sans-serif;
+  font-weight: 200;
+}
+.tajawal-light {
+  font-family: "Tajawal", sans-serif;
+  font-weight: 300;
+}
+.tajawal-regular {
+  font-family: "Tajawal", sans-serif;
+  font-weight: 400;
+}
+.tajawal-medium {
+  font-family: "Tajawal", sans-serif;
+  font-weight: 500;
+}
+.tajawal-bold {
+  font-family: "Tajawal", sans-serif;
+  font-weight: 700;
+}
+.tajawal-extrabold {
+  font-family: "Tajawal", sans-serif;
+  font-weight: 800;
+}
+.tajawal-black {
+  font-family: "Tajawal", sans-serif;
+  font-weight: 900;
+}
+
+.error {
+  color: var(--error);
+}
+
+.countdown-box {
+  align-self: center;
+  min-width: 150px;
+  /*background: var(--bg-secondary);
+  border: 1px solid var(--separator);
+  margin-bottom: 18px;
+  padding: 10px;*/
+  border-radius: 12px;
+  text-align: center;
+  font-size: 24px;
+  color: var(--error);
+  letter-spacing: 2px;
+}
+
+.countdown-box span {
+  font-weight: 800;
+}
+
+.countdown-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.time-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1.2;
+}
+
+.time-number {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--error);
+}
+
+.time-label {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-top: 4px;
+}
+
+.time-separator {
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--error);
+}
+
+.container-404 {
+  text-align: center;
+  max-width: 500px;
+  padding: 20px;
+  background: var(--bg-secondary);
+  border-radius: 16px;
+
+  border: 1px solid var(--separator);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+}
+
+.container-404 h1 {
+  font-size: 60px;
+  margin-bottom: 20px;
+  color: var(--accent-500);
+}
+
+.container-404 p {
+  font-size: 20px;
+  margin-bottom: 12px;
+  color: var(--text-primary);
+}
+
+.container-404 a {
+  color: var(--primary-500);
+  text-decoration: none;
+  font-weight: 700;
+  display: inline-block;
+  margin-top: 12px;
+}
+
+.container-404 a:hover {
+  color: var(--accent-500);
+  text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+  .container-404 h1 {
+    font-size: 48px;
+  }
+
+  .container-404 p {
+    font-size: 18px;
+  }
+}
+
+.offer-note {
+  text-align: center;
+  margin-bottom: 2px;
+  font-size: 24px;
+  color: var(--text-primary);
+}
+
+.offer-note .current-price {
+  font-size: 30px; /* un peu plus grand */
+  font-weight: 900;
+  color: var(--accent-500); /* couleur d’action / mise en avant */
+  margin: 0 4px;
+}
+
+.offer-note .old-price {
+  font-size: 20px; /* plus petit / discret */
+  color: var(--text-secondary);
+  text-decoration: line-through; /* barré pour montrer la réduction */
+  margin-left: 4px;
+}
+
+
+
+/* === Final CTA Section === */
+.rappel-cta-section, .final-cta-section {
+  padding: 40px 16px 60px;
+  text-align: center;
+  background: var(--primary-soft);
+  border-top: 1px solid var(--separator);
+}
+
+.rappel-cta-container, .final-cta-container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.rappel-cta-title {
+  font-size: 26px;
+  margin-bottom: 20px;
+  color: var(--text-primary);
+}
+
+.final-cta-title {
+  font-size: 36px;
+  margin-bottom: 20px;
+  color: var(--text-primary);
+}
+
+
+.final-cta-subtitle {
+  font-size: 32px;
+  margin-bottom: 20px;
+  color: var(--text-primary);
+}
+
+.rappel-cta-title .price-current, .final-cta-subtitle .price-current {
+  color: var(--accent-500);
+  font-weight: 900;
+  margin: 0 6px;
+}
+
+.rappel-cta-title .price-old,  .final-cta-subtitle .price-old{
+  color: var(--text-secondary);
+  text-decoration: line-through;
+  font-size: 20px;
+  margin-right: 6px;
+}
+
+.rappel-cta-btn {
+  margin-top: 12px;
+  width: 100%;
+  max-width: 400px;
+  padding: 14px;
+  font-size: 20px;
+  background: var(--accent-500);
+  color: var(--text-inverted);
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  font-family: "Tajawal", sans-serif;
+  font-weight: 800;
+  transition: all 0.2s ease;
+  box-shadow: 0 10px 25px rgba(27, 175, 203, 0.3);
+}
+
+.rappel-cta-btn:hover {
+  background: var(--accent-700);
+}
+
+.rappel-cta-btn:active {
+  transform: translateY(2px);
+}

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>404 - الصفحة غير موجودة</title>
+
+        <!-- Police Tajawal -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700;800;900&display=swap"
+            rel="stylesheet">
+
+        <style>
+            :root {
+                /* === Backgrounds === */
+                --bg-primary: #ffffff;
+                --bg-secondary: #f8fbfd;
+                --surface: #ffffff;
+              
+                /* === Text === */
+                --text-primary: #000000;
+                --text-secondary: #555555;
+                --text-muted: #7b7b7b;
+                --text-inverted: #ffffff;
+              
+                /* === Brand Primary (Health Blue) === */
+                --primary-500: #5bbceb;
+                --primary-700: #3aa7da;
+                --primary-soft: #eaf6fd;
+              
+                /* === Accent (Turquoise Action) === */
+                --accent-500: #1bafcb;
+                --accent-700: #1491a9;
+                --accent-soft: #e6f7fa;
+              
+                /* === UI === */
+                --separator: #e0e0e0;
+                --outline: #e0e0e0;
+              
+                /* === States === */
+                --error: #d92d20;
+                --warning: #f4a100;
+              }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body {
+            height: 100%;
+            font-family: "Tajawal", system-ui, sans-serif;
+            direction: rtl;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+       
+
+        .container-404 {
+            text-align: center;
+            max-width: 500px;
+            padding: 20px;
+            background: var(--bg-secondary);
+            border-radius: 16px;
+            border: 1px solid #2F3138;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .container-404 h1 {
+            font-size: 60px;
+            margin-bottom: 20px;
+            color: var(--accent-500);
+        }
+
+        .container-404 p {
+            font-size: 20px;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .container-404 a {
+            color: var(--primary-500);
+            text-decoration: none;
+            font-weight: 700;
+            display: inline-block;
+            margin-top: 12px;
+        }
+
+        .container-404 a:hover {
+            color: var(--accent-500);
+            text-decoration: underline;
+        }
+
+        @media (max-width: 600px) {
+            .container-404 h1 {
+                font-size: 48px;
+            }
+
+            .container-404 p {
+                font-size: 18px;
+            }
+        }
+    </style>
+    </head>
+
+    <body>
+        <div class="container-404">
+            <h1>⚠️ 404</h1>
+            <p>الصفحة التي تبحث عنها غير موجودة!</p>
+            <p>لديك أسئلة؟ اتصل بنا على: <a
+                    href="tel:+213697275528">0697275528</a></p>
+        </div>
+    </body>
+
+</html>
