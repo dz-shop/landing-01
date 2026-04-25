@@ -1,65 +1,68 @@
-/* === Health Blue Light Theme === */
+/* === Natural Dates / Herbal Theme === */
 :root {
   /* === Backgrounds === */
-  --bg-primary: #ffffff;
-  --bg-secondary: #f8fbfd;
-  --surface: #ffffff;
+  --bg-primary: #f8f3e8;
+  --bg-secondary: #f3ead8;
+  --surface: #fffaf0;
 
   /* === Text === */
-  --text-primary: #000000;
-  --text-secondary: #555555;
-  --text-muted: #7b7b7b;
+  --text-primary: #321806;
+  --text-secondary: #5a3219;
+  --text-muted: #8a715f;
   --text-inverted: #ffffff;
 
-  /* === Brand Primary (Health Blue) === */
-  --primary-500: #5bbceb;
-  --primary-700: #3aa7da;
-  --primary-soft: #eaf6fd;
+  /* === Brand Primary - Warm Brown === */
+  --primary-500: #7a4a2b;
+  --primary-700: #321806;
+  --primary-soft: #efe2c9;
 
-  /* === Accent (Turquoise Action) === */
-  --accent-500: #1bafcb;
-  --accent-700: #1491a9;
-  --accent-soft: #e6f7fa;
+  /* === Accent - Golden CTA === */
+  --accent-500: #d69a25;
+  --accent-700: #b87d13;
+  --accent-soft: #f4dfad;
+
+  /* === Natural Green === */
+  --green-500: #879d4b;
+  --green-700: #5f7334;
+  --green-soft: #e6ead7;
 
   /* === UI === */
-  --separator: #e0e0e0;
-  --outline: #e0e0e0;
+  --separator: #dfc9a5;
+  --outline: #cdb68f;
 
   /* === States === */
-  --error: #d92d20;
-  --warning: #f4a100;
+  --error: #b9472b;
+  --warning: #d69a25;
 }
 
-/* === Health Blue Dark Theme === */
+/* === Natural Dark Theme === */
 :root[data-theme="dark"] {
-  /* === Backgrounds === */
-  --bg-primary: #1E1E1E;
-  --bg-secondary: #2C2C2C;
-  --surface: #2C2C2C;
+  --bg-primary: #1f160f;
+  --bg-secondary: #2b1d13;
+  --surface: #342417;
 
-  /* === Text === */
-  --text-primary: #F5F5F5;
-  --text-secondary: #CCCCCC;
-  --text-muted: #AAAAAA;
-  --text-inverted: #1E1E1E;
+  --text-primary: #fff4df;
+  --text-secondary: #e0c7a6;
+  --text-muted: #b99b78;
+  --text-inverted: #321806;
 
-  /* === Brand Primary (Health Blue) === */
-  --primary-500: #7AC3F5;
-  --primary-700: #5bbceb;
-  --primary-soft: #2A2A2A;
+  --primary-500: #d1a06d;
+  --primary-700: #f0c99a;
+  --primary-soft: #3b2a1b;
 
-  /* === Accent (Turquoise Action) === */
-  --accent-500: #2ED1E0;
-  --accent-700: #1491a9;
-  --accent-soft: #2A2A2A;
+  --accent-500: #d69a25;
+  --accent-700: #f0b64a;
+  --accent-soft: #4a3517;
 
-  /* === UI === */
-  --separator: #444444;
-  --outline: #444444;
+  --green-500: #9fb45d;
+  --green-700: #c1d47a;
+  --green-soft: #30381f;
 
-  /* === States === */
-  --error: #FF6B61;
-  --warning: #F4A100;
+  --separator: #5a422b;
+  --outline: #6a4c31;
+
+  --error: #ff8067;
+  --warning: #f0b64a;
 }
 
 /* === Reset / Base === */
@@ -81,7 +84,10 @@ body {
 }
 
 body {
-  background: linear-gradient(180deg, #ffffff 0%, #f4fbff 100%);
+  background:
+    radial-gradient(circle at top left, rgba(214, 154, 37, 0.22), transparent 30%),
+    radial-gradient(circle at bottom right, rgba(135, 157, 75, 0.22), transparent 30%),
+    linear-gradient(180deg, #fbf7ee 0%, #f8f3e8 100%);
   overflow-y: auto;
 }
 
@@ -89,14 +95,13 @@ body {
 .screen {
   position: relative;
   width: min(1080px, 100vw);
-  margin: 0 auto 0px auto;
+  margin: 0 auto;
 }
 
 .screen__img {
   width: 100%;
   height: auto;
   display: block;
-  /*border-radius: 12px;*/
 }
 
 /* === CTA overlay === */
@@ -126,7 +131,7 @@ body {
 }
 
 .cta-img:hover img {
-  filter: drop-shadow(0 0 20px var(--accent-500));
+  filter: drop-shadow(0 0 20px rgba(214, 154, 37, 0.55));
 }
 
 .cta-img:active img {
@@ -156,8 +161,6 @@ a:hover {
   padding: 16px 16px;
   background: var(--bg-secondary);
   border-top: 1px solid var(--separator);
-  /*border-radius: 12px 12px 0 0;
-  margin-bottom: 40px;*/
 }
 
 .form-container {
@@ -170,14 +173,14 @@ a:hover {
 
 .form-title {
   font-size: 24px;
-  margin-bottom: 0px;
+  margin-bottom: 0;
   text-align: center;
   color: var(--text-primary);
 }
 
 .form-note {
   font-size: 12px;
-  margin-bottom: 0px;
+  margin-bottom: 0;
   text-align: center;
   color: var(--text-secondary);
 }
@@ -193,35 +196,33 @@ form input {
   padding: 10px 14px;
   border-radius: 12px;
   border: 1px solid var(--outline);
-  background: var(--bg-primary);
+  background: var(--surface);
   color: var(--text-primary);
   font-family: "Tajawal", sans-serif;
   font-size: 16px;
   margin-bottom: 20px;
+  transition: all 0.2s ease;
 }
 
 form input::placeholder {
-  color: var(--text-secondary);
+  color: var(--text-muted);
 }
 
 form input:focus {
   outline: none;
-  border-color: var(--primary-500);
-  box-shadow: 0 0 0 3px rgba(91, 188, 235, 0.25);
-}
-form input {
-  transition: all 0.2s ease;
+  border-color: var(--accent-500);
+  box-shadow: 0 0 0 3px rgba(214, 154, 37, 0.25);
 }
 
 form input:hover {
-  border-color: var(--primary-500);
+  border-color: var(--accent-500);
 }
 
 form button.btn {
   width: 100%;
   padding: 12px;
   font-size: 18px;
-  background: var(--accent-500);
+  background: linear-gradient(180deg, #dfa73a 0%, #c88918 100%);
   color: var(--text-inverted);
   border: none;
   border-radius: 12px;
@@ -230,12 +231,14 @@ form button.btn {
   font-weight: 700;
   transition:
     background 0.2s ease,
-    transform 0.1s ease;
-  box-shadow: 0 8px 20px rgba(91, 188, 235, 0.3);
+    transform 0.1s ease,
+    box-shadow 0.2s ease;
+  box-shadow: 0 8px 20px rgba(184, 125, 19, 0.32);
 }
 
 form button.btn:hover {
-  background: var(--accent-700);
+  background: linear-gradient(180deg, #e4ad43 0%, #b87d13 100%);
+  box-shadow: 0 10px 24px rgba(184, 125, 19, 0.4);
 }
 
 form button.btn:active {
@@ -250,21 +253,17 @@ form button.btn:active {
   gap: 8px;
   font-size: 16px;
   color: var(--text-primary);
-  /*text-align: right;  RTL */
 }
 
 .form-points p {
   margin: 0;
-  /*padding-left: 8px;  espace avant le ✔ */
   position: relative;
 }
 
-/* Facultatif : style du check mark pour un peu plus joli */
 .form-points p::before {
   content: "✅";
-  color: var(--accent-500);
+  color: var(--green-500);
   position: absolute;
-  /*right: 0;*/
 }
 
 /* === Tajawal font weights === */
@@ -272,26 +271,32 @@ form button.btn:active {
   font-family: "Tajawal", sans-serif;
   font-weight: 200;
 }
+
 .tajawal-light {
   font-family: "Tajawal", sans-serif;
   font-weight: 300;
 }
+
 .tajawal-regular {
   font-family: "Tajawal", sans-serif;
   font-weight: 400;
 }
+
 .tajawal-medium {
   font-family: "Tajawal", sans-serif;
   font-weight: 500;
 }
+
 .tajawal-bold {
   font-family: "Tajawal", sans-serif;
   font-weight: 700;
 }
+
 .tajawal-extrabold {
   font-family: "Tajawal", sans-serif;
   font-weight: 800;
 }
+
 .tajawal-black {
   font-family: "Tajawal", sans-serif;
   font-weight: 900;
@@ -301,29 +306,23 @@ form button.btn:active {
   color: var(--error);
 }
 
+/* === Countdown === */
 .countdown-box {
   align-self: center;
   min-width: 150px;
-  /*background: var(--bg-secondary);
-  border: 1px solid var(--separator);
-  margin-bottom: 18px;
-  padding: 10px;*/
   border-radius: 12px;
   text-align: center;
   font-size: 24px;
   color: var(--error);
   letter-spacing: 2px;
-}
-
-.countdown-box span {
-  font-weight: 800;
-}
-
-.countdown-box {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
+}
+
+.countdown-box span {
+  font-weight: 800;
 }
 
 .time-box {
@@ -351,15 +350,15 @@ form button.btn:active {
   color: var(--error);
 }
 
+/* === 404 Page === */
 .container-404 {
   text-align: center;
   max-width: 500px;
   padding: 20px;
-  background: var(--bg-secondary);
+  background: var(--surface);
   border-radius: 16px;
-
   border: 1px solid var(--separator);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 10px 30px rgba(50, 24, 6, 0.08);
 }
 
 .container-404 h1 {
@@ -387,16 +386,7 @@ form button.btn:active {
   text-decoration: underline;
 }
 
-@media (max-width: 600px) {
-  .container-404 h1 {
-    font-size: 48px;
-  }
-
-  .container-404 p {
-    font-size: 18px;
-  }
-}
-
+/* === Offer Note === */
 .offer-note {
   text-align: center;
   margin-bottom: 2px;
@@ -405,30 +395,38 @@ form button.btn:active {
 }
 
 .offer-note .current-price {
-  font-size: 30px; /* un peu plus grand */
+  font-size: 30px;
   font-weight: 900;
-  color: var(--accent-500); /* couleur d’action / mise en avant */
+  color: var(--accent-500);
   margin: 0 4px;
 }
 
 .offer-note .old-price {
-  font-size: 20px; /* plus petit / discret */
-  color: var(--text-secondary);
-  text-decoration: line-through; /* barré pour montrer la réduction */
+  font-size: 20px;
+  color: var(--text-muted);
+  text-decoration: line-through;
   margin-left: 4px;
 }
 
-
+.offer-note .gift-badge {
+  font-size: 24px;
+  font-weight: 900;
+  color: var(--primary-700);
+  margin-inline: 4px;
+  white-space: nowrap;
+}
 
 /* === Final CTA Section === */
-.rappel-cta-section, .final-cta-section {
+.rappel-cta-section,
+.final-cta-section {
   padding: 40px 16px 60px;
   text-align: center;
   background: var(--primary-soft);
   border-top: 1px solid var(--separator);
 }
 
-.rappel-cta-container, .final-cta-container {
+.rappel-cta-container,
+.final-cta-container {
   max-width: 600px;
   margin: 0 auto;
 }
@@ -445,21 +443,22 @@ form button.btn:active {
   color: var(--text-primary);
 }
 
-
 .final-cta-subtitle {
   font-size: 32px;
   margin-bottom: 20px;
   color: var(--text-primary);
 }
 
-.rappel-cta-title .price-current, .final-cta-subtitle .price-current {
+.rappel-cta-title .price-current,
+.final-cta-subtitle .price-current {
   color: var(--accent-500);
   font-weight: 900;
   margin: 0 6px;
 }
 
-.rappel-cta-title .price-old,  .final-cta-subtitle .price-old{
-  color: var(--text-secondary);
+.rappel-cta-title .price-old,
+.final-cta-subtitle .price-old {
+  color: var(--text-muted);
   text-decoration: line-through;
   font-size: 20px;
   margin-right: 6px;
@@ -471,21 +470,94 @@ form button.btn:active {
   max-width: 400px;
   padding: 14px;
   font-size: 20px;
-  background: var(--accent-500);
+  background: linear-gradient(180deg, #dfa73a 0%, #c88918 100%);
   color: var(--text-inverted);
   border: none;
   border-radius: 14px;
   cursor: pointer;
   font-family: "Tajawal", sans-serif;
   font-weight: 800;
-  transition: all 0.2s ease;
-  box-shadow: 0 10px 25px rgba(27, 175, 203, 0.3);
+  transition:
+    background 0.2s ease,
+    transform 0.1s ease,
+    box-shadow 0.2s ease;
+  box-shadow: 0 10px 25px rgba(184, 125, 19, 0.32);
 }
 
 .rappel-cta-btn:hover {
-  background: var(--accent-700);
+  background: linear-gradient(180deg, #e4ad43 0%, #b87d13 100%);
+  box-shadow: 0 12px 28px rgba(184, 125, 19, 0.42);
 }
 
 .rappel-cta-btn:active {
   transform: translateY(2px);
+}
+
+/* === Responsive === */
+@media (max-width: 600px) {
+  .container-404 h1 {
+    font-size: 48px;
+  }
+
+  .container-404 p {
+    font-size: 18px;
+  }
+
+  .form-title {
+    font-size: 22px;
+  }
+
+  .offer-note {
+    font-size: 22px;
+  }
+
+  .offer-note .current-price {
+    font-size: 28px;
+  }
+
+  .final-cta-title {
+    font-size: 30px;
+  }
+
+  .final-cta-subtitle {
+    font-size: 26px;
+  }
+
+  .rappel-cta-title {
+    font-size: 24px;
+  }
+}
+
+
+
+
+.offer-condition {
+  text-align: center;
+  font-size: 16px;
+  color: var(--text-secondary);
+  margin-top: -8px;
+  line-height: 1.6;
+}
+
+form select {
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--outline);
+  background: var(--surface);
+  color: var(--text-primary);
+  font-family: "Tajawal", sans-serif;
+  font-size: 16px;
+  margin-bottom: 20px;
+  transition: all 0.2s ease;
+}
+
+form select:focus {
+  outline: none;
+  border-color: var(--accent-500);
+  box-shadow: 0 0 0 3px rgba(214, 154, 37, 0.25);
+}
+
+form select:hover {
+  border-color: var(--accent-500);
 }

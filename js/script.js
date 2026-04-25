@@ -1,160 +1,234 @@
-const form = document.getElementById('orderForm')
-const submitButton = form.querySelector('button[type="submit"]')
+document.addEventListener('DOMContentLoaded', function () {
+  const form = document.getElementById('orderForm')
+  const submitButton = form ? form.querySelector('button[type="submit"]') : null
+  const offerSelect = document.getElementById('offer')
+  const priceInput = document.getElementById('price')
+  const offerLabelInput = document.getElementById('offer_label')
+  const errorBox = document.getElementById('error')
 
-trackViewContent()
-
-form.addEventListener('submit', function (e) {
-  //posthog.capture('my_custom_event', { property: 'value' })
-  e.preventDefault()
-
-  // Désactiver le bouton pour éviter plusieurs clics
-  submitButton.disabled = true
-  submitButton.innerText = 'ارسال...'
-
-  const formData = new FormData(form)
-
-  fetch(
-    'https://script.google.com/macros/s/AKfycbxuxogdcCmIqKmPrse2v_CDfahmQtPF7r-z3oglWE2JoeBYGvQY3dPlqSGZdkhF_NEFHA/exec',
-    {
-      // <-- Remplace TON_DEPLOY_ID
-      method: 'POST',
-      body: formData
+  const offers = {
+    '250g': {
+      price: 900,
+      label: '250غ بـ 900 دج'
+    },
+    '500g': {
+      price: 1500,
+      label: '500غ بـ 1500 دج'
+    },
+    '1kg_4x250g_gift': {
+      price: 3600,
+      label: '4 أكياس 250غ + 250غ هدية'
+    },
+    '1kg_2x500g_gift': {
+      price: 3000,
+      label: 'كيسين 500غ + 250غ هدية'
     }
-  )
-    .then(response => response.text())
-    .then(text => {
-      // Réactiver le bouton
-      submitButton.disabled = false
-      submitButton.innerText = 'اطلب الان'
-
-      if (text.toLowerCase().includes('success')) {
-        //document.getElementById('message').style.display = 'block'
-        document.getElementById('error').style.display = 'none'
-        form.reset()
-        trackPurchase()
-
-        // Redirection après 500ms pour laisser le pixel envoyer l'event
-        setTimeout(() => {
-          window.location.href = 'thankyou.html'
-        }, 500)
-      } else {
-        //document.getElementById('message').style.display = 'none'
-        document.getElementById('error').style.display = 'block'
-        //console.log('Erreur serveur :', text)
-      }
-    })
-    .catch(err => {
-      // Réactiver le bouton en cas d'erreur
-      submitButton.disabled = false
-      submitButton.innerText = 'اطلب الان'
-
-      //document.getElementById('message').style.display = 'none'
-      document.getElementById('error').style.display = 'block'
-      console.error(err)
-    })
-})
-
-;(function () {
-  const DURATION = 24 * 60 * 60 // 24 heures en secondes
-  const STORAGE_KEY = 'offerCountdownEnd'
-
-  // Si pas encore stocké → on crée un nouveau countdown
-  let endTime = localStorage.getItem(STORAGE_KEY)
-  if (!endTime) {
-    endTime = Date.now() + DURATION * 1000
-    localStorage.setItem(STORAGE_KEY, endTime)
   }
 
-  function updateCountdown () {
-    const now = Date.now()
-    const timeLeft = Math.floor((endTime - now) / 1000)
+  function updateSelectedOffer () {
+    if (!offerSelect || !priceInput || !offerLabelInput) return
 
-    const countdownBoxes = document.querySelectorAll('.countdown-box')
-    if (timeLeft <= 0) {
-      localStorage.removeItem(STORAGE_KEY)
-      countdownBoxes.forEach(box => {
-        box.innerHTML = 'انتهى العرض'
+    const selectedOffer = offers[offerSelect.value]
+
+    if (selectedOffer) {
+      priceInput.value = selectedOffer.price
+      offerLabelInput.value = selectedOffer.label
+    } else {
+      priceInput.value = ''
+      offerLabelInput.value = ''
+    }
+  }
+
+  if (offerSelect) {
+    offerSelect.addEventListener('change', function () {
+      updateSelectedOffer()
+      offerSelect.setCustomValidity('')
+    })
+  }
+
+  trackViewContent()
+
+  if (form && submitButton) {
+    form.addEventListener('submit', function (e) {
+      e.preventDefault()
+
+      updateSelectedOffer()
+
+      if (offerSelect && !offerSelect.value) {
+        offerSelect.setCustomValidity('الرجاء اختيار العرض المناسب')
+        offerSelect.reportValidity()
+        return
+      }
+
+      if (offerSelect) {
+        offerSelect.setCustomValidity('')
+      }
+
+      submitButton.disabled = true
+      submitButton.innerText = 'جارٍ الإرسال...'
+
+      if (errorBox) {
+        errorBox.hidden = true
+      }
+
+      const formData = new FormData(form)
+
+      fetch(
+        'https://script.google.com/macros/s/AKfycby0MhYleqpspdLDvrSsQavkzWL23O62CNhfm1Jcq1viPkk9DEnKwTZzbIF2l_gj-GJiTg/exec',
+        {
+          method: 'POST',
+          body: formData
+        }
+      )
+        .then(response => response.text())
+        .then(text => {
+          submitButton.disabled = false
+          submitButton.innerText = 'اطلب الآن'
+
+          if (text.toLowerCase().includes('success')) {
+            if (errorBox) {
+              errorBox.hidden = true
+            }
+
+            trackPurchase()
+            form.reset()
+
+            setTimeout(function () {
+              window.location.href = 'thankyou.html'
+            }, 500)
+          } else {
+            if (errorBox) {
+              errorBox.hidden = false
+            }
+
+            console.log('Erreur serveur :', text)
+          }
+        })
+        .catch(err => {
+          submitButton.disabled = false
+          submitButton.innerText = 'اطلب الآن'
+
+          if (errorBox) {
+            errorBox.hidden = false
+          }
+
+          console.error(err)
+        })
+    })
+  }
+
+  // Countdown
+  ;(function () {
+    const DURATION = 24 * 60 * 60
+    const STORAGE_KEY = 'offerCountdownEnd'
+
+    let endTime = localStorage.getItem(STORAGE_KEY)
+
+    if (!endTime) {
+      endTime = Date.now() + DURATION * 1000
+      localStorage.setItem(STORAGE_KEY, endTime)
+    }
+
+    function updateCountdown () {
+      const now = Date.now()
+      const timeLeft = Math.floor((endTime - now) / 1000)
+      const countdownBoxes = document.querySelectorAll('.countdown-box')
+
+      if (timeLeft <= 0) {
+        localStorage.removeItem(STORAGE_KEY)
+
+        countdownBoxes.forEach(function (box) {
+          box.innerHTML = 'انتهى العرض'
+        })
+
+        return
+      }
+
+      const hours = Math.floor(timeLeft / 3600)
+      const minutes = Math.floor((timeLeft % 3600) / 60)
+      const seconds = timeLeft % 60
+
+      countdownBoxes.forEach(function (box) {
+        const hEl = box.querySelector('.hours')
+        const mEl = box.querySelector('.minutes')
+        const sEl = box.querySelector('.seconds')
+
+        if (hEl) hEl.textContent = String(hours).padStart(2, '0')
+        if (mEl) mEl.textContent = String(minutes).padStart(2, '0')
+        if (sEl) sEl.textContent = String(seconds).padStart(2, '0')
       })
-      return
     }
 
-    const hours = Math.floor(timeLeft / (60 * 60))
-    const minutes = Math.floor((timeLeft % 3600) / 60)
-    const seconds = timeLeft % 60
+    updateCountdown()
+    setInterval(updateCountdown, 1000)
+  })()
 
-    countdownBoxes.forEach(box => {
-      const hEl = box.querySelector('.hours')
-      const mEl = box.querySelector('.minutes')
-      const sEl = box.querySelector('.seconds')
-
-      if (hEl) hEl.textContent = String(hours).padStart(2, '0')
-      if (mEl) mEl.textContent = String(minutes).padStart(2, '0')
-      if (sEl) sEl.textContent = String(seconds).padStart(2, '0')
-    })
-  }
-
-  updateCountdown()
-  setInterval(updateCountdown, 1000)
-})()
-
-function trackViewContent () {
-  const contentId = form.querySelector('input[name="content_id"]').value
-  const contentName = form.querySelector('input[name="content_name"]').value
-  const price = form.querySelector('input[name="price"]').value
-  const currency = form.querySelector('input[name="currency"]').value
-
-  /* ttq.track('ViewContent', {
-    contents: [
-      {
-        content_id: contentId, // string. ID of the product. Example: "1077218".
-        content_type: 'product', // string. Either product or product_group.
-        content_name: contentName // string. The name of the page or product. Example: "shirt".
-      }
-    ],
-    value: price, // number. Value of the order or items sold. Example: 100.
-    currency: currency // string. The 4217 currency code. Example: "USD".
-  }) */
-}
-
-function trackPurchase () {
-  const contentId = form.querySelector('input[name="content_id"]').value
-  const contentName = form.querySelector('input[name="content_name"]').value
-  const price = form.querySelector('input[name="price"]').value
-  const currency = form.querySelector('input[name="currency"]').value
-
-  /* ttq.track('Purchase', {
-    contents: [
-      {
-        content_id: contentId, // string. ID of the product. Example: "1077218".
-        content_type: 'product', // string. Either product or product_group.
-        content_name: contentName // string. The name of the page or product. Example: "shirt".
-      }
-    ],
-    value: price, // number. Value of the order or items sold. Example: 100.
-    currency: currency // string. The 4217 currency code. Example: "USD".
-  })
-
-  posthog.capture('Purchase', {
-    content_id: contentId,
-    content_name: contentName,
-    value: parseFloat(price),
-    currency: currency
-  }); */
-}
-
-
-document.addEventListener("DOMContentLoaded", function () {
-  const btns = document.querySelectorAll(".scrollToOrder");
-  const orderSection = document.getElementById("order-section");
+  // Scroll to order section
+  const btns = document.querySelectorAll('.scrollToOrder')
+  const orderSection = document.getElementById('order-section')
 
   if (btns.length && orderSection) {
-    btns.forEach(btn => {
-      btn.addEventListener("click", function () {
+    btns.forEach(function (btn) {
+      btn.addEventListener('click', function () {
         orderSection.scrollIntoView({
-          behavior: "smooth",
-          block: "start"
-        });
-      });
-    });
+          behavior: 'smooth',
+          block: 'start'
+        })
+      })
+    })
   }
-});
+
+  function trackViewContent () {
+    if (!form) return
+
+    const contentId = form.querySelector('input[name="content_id"]')?.value || 'doum_powder'
+    const contentName = form.querySelector('input[name="content_name"]')?.value || 'Poudre naturelle de doum'
+    const currency = form.querySelector('input[name="currency"]')?.value || 'DZD'
+
+    /*
+    ttq.track('ViewContent', {
+      contents: [
+        {
+          content_id: contentId,
+          content_type: 'product',
+          content_name: contentName
+        }
+      ],
+      value: 0,
+      currency: currency
+    })
+    */
+  }
+
+  function trackPurchase () {
+    if (!form) return
+
+    const contentId = form.querySelector('input[name="content_id"]')?.value || 'doum_powder'
+    const contentName = form.querySelector('input[name="content_name"]')?.value || 'Poudre naturelle de doum'
+    const price = form.querySelector('input[name="price"]')?.value || '0'
+    const currency = form.querySelector('input[name="currency"]')?.value || 'DZD'
+    const offerLabel = form.querySelector('input[name="offer_label"]')?.value || ''
+
+    /*
+    ttq.track('Purchase', {
+      contents: [
+        {
+          content_id: contentId,
+          content_type: 'product',
+          content_name: contentName
+        }
+      ],
+      value: parseFloat(price),
+      currency: currency
+    })
+
+    posthog.capture('Purchase', {
+      content_id: contentId,
+      content_name: contentName,
+      offer: offerLabel,
+      value: parseFloat(price),
+      currency: currency
+    })
+    */
+  }
+})
