@@ -221,6 +221,7 @@ document.addEventListener('DOMContentLoaded', function () {
       value: parseFloat(price),
       currency: currency
     })
+    */
 
     posthog.capture('Purchase', {
       content_id: contentId,
@@ -229,6 +230,5 @@ document.addEventListener('DOMContentLoaded', function () {
       value: parseFloat(price),
       currency: currency
     })
-    */
   }
 })
