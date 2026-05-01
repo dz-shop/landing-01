@@ -1,0 +1,938 @@
+/* ================================
+   STYLE LANDING PAGE ARABE PRODUIT
+   Inspiré de la maquette fournie
+================================ */
+
+/* Google font conseillé dans le HTML :
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+*/
+
+:root {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f7f7f4;
+  --surface: #ffffff;
+
+  --text-primary: #0c0c0c;
+  --text-secondary: #4c4c4c;
+  --text-muted: #777777;
+  --text-inverted: #ffffff;
+
+  --green-500: #16843a;
+  --green-600: #0f7430;
+  --green-700: #075f25;
+  --green-soft: #edf6ef;
+
+  --gold-500: #d5af2f;
+  --gold-600: #bd941d;
+  --gold-soft: #fbf3d4;
+
+  --brown-500: #6b3f22;
+  --red-700: #7e0909;
+
+  --border: #eeeeee;
+  --shadow-soft: 0 10px 28px rgba(0, 0, 0, 0.12);
+  --shadow-card: 0 8px 20px rgba(0, 0, 0, 0.10);
+
+  --radius-lg: 28px;
+  --radius-md: 20px;
+  --radius-sm: 14px;
+}
+
+/* ================================
+   RESET / BASE
+================================ */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  width: 100%;
+  min-height: 100%;
+  direction: rtl;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Tajawal", "Noto Kufi Arabic", "Noto Naskh Arabic", Arial, sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.45;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+}
+
+/* ================================
+   SCREEN IMAGE SECTIONS
+   Pour tes images 9:16
+================================ */
+
+.screen {
+  position: relative;
+  width: min(720px, 100%);
+  margin: 0 auto;
+  background: #fff;
+  overflow: hidden;
+}
+
+.screen__img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Overlay CTA sur image */
+.cta-img {
+  position: absolute;
+  left: 6%;
+  right: 6%;
+  bottom: calc(22px + env(safe-area-inset-bottom));
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.cta-img img {
+  width: 100%;
+  max-width: 620px;
+  border-radius: 18px;
+  box-shadow: 0 10px 24px rgba(0, 120, 45, 0.22);
+  transition: transform 0.15s ease, filter 0.2s ease;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.cta-img:hover img {
+  filter: brightness(1.04);
+}
+
+.cta-img:active img {
+  transform: scale(0.98);
+}
+
+/* ================================
+   TITLES / TEXT
+================================ */
+
+h1,
+h2,
+h3,
+.form-title,
+.final-cta-title,
+.rappel-cta-title {
+  font-weight: 900;
+  color: var(--text-primary);
+  letter-spacing: -0.5px;
+}
+
+.section-title {
+  font-size: clamp(34px, 7vw, 58px);
+  line-height: 1.12;
+  text-align: center;
+  margin-bottom: 18px;
+}
+
+.section-subtitle {
+  font-size: clamp(20px, 4vw, 32px);
+  line-height: 1.55;
+  text-align: center;
+  color: var(--text-secondary);
+  font-weight: 500;
+  margin-bottom: 32px;
+}
+
+/* Texte rouge pour alerte, comme première maquette */
+.text-danger,
+.error {
+  color: var(--red-700);
+}
+
+/* ================================
+   CARDS STYLE MAQUETTE
+================================ */
+
+.card,
+.info-card,
+.benefit-card {
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-card);
+  padding: 24px;
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 22px;
+  width: min(560px, calc(100% - 40px));
+  margin: 0 auto;
+}
+
+.info-card {
+  min-height: 150px;
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+
+.info-card img,
+.benefit-card img {
+  width: 95px;
+  height: 95px;
+  object-fit: contain;
+  flex: 0 0 auto;
+}
+
+.info-card-title,
+.benefit-card-title {
+  font-size: clamp(26px, 5vw, 40px);
+  line-height: 1.2;
+  font-weight: 900;
+  color: #111;
+}
+
+.info-card-text,
+.benefit-card-text {
+  font-size: clamp(18px, 3.5vw, 24px);
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+/* ================================
+   BUTTONS
+================================ */
+
+.btn,
+form button.btn,
+.rappel-cta-btn,
+.final-cta-btn,
+.order-btn {
+  width: 100%;
+  min-height: 64px;
+  padding: 16px 24px;
+  border: none;
+  border-radius: 18px;
+  cursor: pointer;
+  background: linear-gradient(180deg, #15933f 0%, #08732c 100%);
+  color: var(--text-inverted);
+  font-size: clamp(22px, 5vw, 36px);
+  font-weight: 900;
+  text-align: center;
+  box-shadow: 0 10px 24px rgba(0, 110, 45, 0.28);
+  transition: transform 0.15s ease, filter 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn:hover,
+form button.btn:hover,
+.rappel-cta-btn:hover,
+.final-cta-btn:hover,
+.order-btn:hover {
+  filter: brightness(1.05);
+  box-shadow: 0 14px 30px rgba(0, 110, 45, 0.34);
+}
+
+.btn:active,
+form button.btn:active,
+.rappel-cta-btn:active,
+.final-cta-btn:active,
+.order-btn:active {
+  transform: scale(0.98);
+}
+
+/* Bouton WhatsApp blanc/vert */
+.whatsapp-btn {
+  min-height: 62px;
+  padding: 14px 24px;
+  border-radius: 16px;
+  border: 1.5px solid #d7d7d7;
+  background: #ffffff;
+  color: #08732c;
+  font-size: clamp(20px, 4.5vw, 32px);
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Ligne boutons en bas */
+.cta-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  width: min(620px, calc(100% - 40px));
+  margin: 28px auto 0;
+}
+
+/* ================================
+   FORMULAIRE COMMANDE
+================================ */
+
+.order-form-section {
+  width: 100%;
+  padding: 44px 18px 54px;
+  background: #fff;
+  border-top: 1px solid #f0f0f0;
+}
+
+.form-container {
+  width: min(560px, 100%);
+  margin: 0 auto;
+  background: #ffffff;
+  border-radius: 28px;
+  padding: 28px 22px;
+  box-shadow: var(--shadow-soft);
+  border: 1px solid #ededed;
+}
+
+.form-title {
+  font-size: clamp(30px, 7vw, 48px);
+  line-height: 1.15;
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.form-note,
+.offer-condition {
+  font-size: clamp(17px, 3.5vw, 22px);
+  text-align: center;
+  color: var(--text-secondary);
+  margin-bottom: 22px;
+  line-height: 1.6;
+}
+
+form label {
+  display: block;
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+form input,
+form select,
+form textarea {
+  width: 100%;
+  min-height: 58px;
+  padding: 14px 16px;
+  margin-bottom: 18px;
+  border-radius: 16px;
+  border: 1.5px solid #e1e1e1;
+  background: #fbfbfb;
+  color: var(--text-primary);
+  font-size: 18px;
+  font-weight: 600;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+form input::placeholder,
+form textarea::placeholder {
+  color: #9a9a9a;
+}
+
+form input:focus,
+form select:focus,
+form textarea:focus {
+  border-color: var(--green-500);
+  background: #ffffff;
+  box-shadow: 0 0 0 4px rgba(22, 132, 58, 0.12);
+}
+
+form button.btn {
+  margin-top: 6px;
+}
+
+/* Points sous formulaire */
+.form-points {
+  margin-top: 18px;
+  display: grid;
+  gap: 10px;
+  font-size: 18px;
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
+.form-points p {
+  position: relative;
+  padding-right: 30px;
+}
+
+.form-points p::before {
+  content: "✓";
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--green-soft);
+  color: var(--green-600);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 900;
+}
+
+/* ================================
+   PRICING / OFFERS
+================================ */
+
+.offer-note {
+  text-align: center;
+  margin: 20px auto;
+  font-size: clamp(22px, 5vw, 36px);
+  line-height: 1.4;
+  font-weight: 900;
+  color: var(--text-primary);
+}
+
+.offer-note .current-price {
+  display: inline-block;
+  font-size: clamp(32px, 8vw, 58px);
+  font-weight: 900;
+  color: #111;
+  margin-inline: 6px;
+}
+
+.offer-note .old-price {
+  font-size: clamp(18px, 4vw, 26px);
+  color: var(--text-muted);
+  text-decoration: line-through;
+  margin-inline: 6px;
+}
+
+.offer-note .gift-badge {
+  display: inline-block;
+  color: var(--green-700);
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+/* Carte prix simple */
+.price-card {
+  width: min(620px, calc(100% - 40px));
+  margin: 18px auto;
+  padding: 30px 20px;
+  border-radius: 28px;
+  background: #ffffff;
+  box-shadow: var(--shadow-card);
+  border: 1px solid #eeeeee;
+  text-align: center;
+}
+
+.price-card .size {
+  font-size: clamp(28px, 6vw, 44px);
+  font-weight: 900;
+  color: #111;
+}
+
+.price-card .price {
+  font-size: clamp(32px, 8vw, 58px);
+  font-weight: 900;
+  color: #111;
+}
+
+/* Carte offre dorée */
+.price-card.featured {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #f9e6a6 0%, #d4a62f 45%, #bd8f22 100%);
+  border: 1px solid rgba(156, 111, 12, 0.35);
+  box-shadow: 0 12px 28px rgba(181, 139, 28, 0.34);
+}
+
+.price-card.featured::after {
+  content: "عرض محدود";
+  position: absolute;
+  top: 18px;
+  left: -44px;
+  transform: rotate(-42deg);
+  background: #c51f1f;
+  color: #fff;
+  padding: 8px 46px;
+  font-size: 16px;
+  font-weight: 900;
+}
+
+/* Badges */
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+.badge {
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.75);
+  color: #111;
+  font-size: 17px;
+  font-weight: 800;
+}
+
+/* ================================
+   FINAL CTA / RAPPEL
+================================ */
+
+.rappel-cta-section,
+.final-cta-section {
+  padding: 46px 18px 64px;
+  background: #ffffff;
+  text-align: center;
+  border-top: 1px solid #f0f0f0;
+}
+
+.rappel-cta-container,
+.final-cta-container {
+  width: min(620px, 100%);
+  margin: 0 auto;
+}
+
+.rappel-cta-title,
+.final-cta-title {
+  font-size: clamp(32px, 7vw, 54px);
+  line-height: 1.15;
+  margin-bottom: 16px;
+}
+
+.final-cta-subtitle {
+  font-size: clamp(24px, 5vw, 38px);
+  line-height: 1.35;
+  color: var(--text-secondary);
+  font-weight: 800;
+  margin-bottom: 24px;
+}
+
+.rappel-cta-title .price-current,
+.final-cta-subtitle .price-current {
+  color: var(--green-600);
+  font-weight: 900;
+}
+
+.rappel-cta-title .price-old,
+.final-cta-subtitle .price-old {
+  color: var(--text-muted);
+  text-decoration: line-through;
+  font-size: 0.75em;
+}
+
+/* ================================
+   COUNTDOWN
+================================ */
+
+.countdown-box {
+  width: fit-content;
+  margin: 12px auto 20px;
+  padding: 12px 18px;
+  border-radius: 16px;
+  background: #fff3f0;
+  border: 1px solid #ffd6ce;
+  color: #c22b18;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.time-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 44px;
+}
+
+.time-number {
+  font-size: 28px;
+  line-height: 1;
+  font-weight: 900;
+  color: #c22b18;
+}
+
+.time-label {
+  font-size: 13px;
+  color: #7b3026;
+  margin-top: 5px;
+  font-weight: 700;
+}
+
+.time-separator {
+  font-size: 26px;
+  font-weight: 900;
+  color: #c22b18;
+}
+
+/* ================================
+   404
+================================ */
+
+.container-404 {
+  width: min(500px, calc(100% - 40px));
+  margin: 80px auto;
+  padding: 34px 24px;
+  background: #fff;
+  border-radius: 24px;
+  border: 1px solid #eeeeee;
+  box-shadow: var(--shadow-soft);
+  text-align: center;
+}
+
+.container-404 h1 {
+  font-size: 72px;
+  color: var(--green-600);
+  margin-bottom: 14px;
+}
+
+.container-404 p {
+  font-size: 22px;
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+}
+
+.container-404 a {
+  display: inline-block;
+  margin-top: 16px;
+  color: var(--green-600);
+  font-size: 18px;
+  font-weight: 900;
+}
+
+/* ================================
+   RESPONSIVE
+================================ */
+
+@media (max-width: 600px) {
+  .screen {
+    width: 100%;
+  }
+
+  .cta-img {
+    left: 7%;
+    right: 7%;
+    bottom: calc(18px + env(safe-area-inset-bottom));
+  }
+
+  .form-container {
+    padding: 24px 18px;
+    border-radius: 24px;
+  }
+
+  form input,
+  form select,
+  form textarea {
+    font-size: 17px;
+    min-height: 56px;
+  }
+
+  .cta-row {
+    gap: 10px;
+    width: calc(100% - 28px);
+  }
+
+  .btn,
+  form button.btn,
+  .rappel-cta-btn,
+  .final-cta-btn,
+  .order-btn,
+  .whatsapp-btn {
+    min-height: 58px;
+    border-radius: 15px;
+  }
+
+  .price-card {
+    width: calc(100% - 28px);
+    border-radius: 24px;
+  }
+
+  .cards-grid {
+    width: calc(100% - 34px);
+  }
+
+  .info-card {
+    padding: 20px;
+    min-height: 130px;
+  }
+
+  .info-card img,
+  .benefit-card img {
+    width: 78px;
+    height: 78px;
+  }
+}
+
+@media (max-width: 380px) {
+  .section-title,
+  .form-title,
+  .final-cta-title,
+  .rappel-cta-title {
+    font-size: 30px;
+  }
+
+  .section-subtitle,
+  .final-cta-subtitle {
+    font-size: 20px;
+  }
+
+  .cta-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* === Formulaire style maquette === */
+
+.order-form-section {
+  background: #F5F4F2;
+  padding: 28px 14px 18px;
+}
+
+.order-mockup-form {
+  width: min(430px, 100%);
+  margin: 0 auto;
+  padding: 0;
+  box-shadow: none;
+  border: none;
+  background: transparent;
+}
+
+.order-mockup-form .form-title {
+  font-size: 30px;
+  line-height: 1.25;
+  text-align: center;
+  color: #050505;
+  margin-bottom: 6px;
+  font-weight: 900;
+}
+
+.order-mockup-form .form-note {
+  font-size: 16px;
+  text-align: center;
+  color: #202020;
+  margin-bottom: 24px;
+  font-weight: 500;
+}
+
+.order-mockup-form form {
+  background: #F5F4F2;
+}
+
+.order-mockup-form form input:not([type="hidden"]),
+.order-mockup-form form select {
+  width: 100%;
+  height: 38px;
+  padding: 6px 12px;
+  margin-bottom: 7px;
+  border: 1.5px solid #222;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #111;
+  font-size: 16px;
+  font-weight: 500;
+  text-align: right;
+  outline: none;
+  box-shadow: none;
+}
+
+.order-mockup-form form input::placeholder {
+  color: #111;
+  opacity: 1;
+}
+
+.order-mockup-form form select {
+  color: #333;
+  appearance: auto;
+}
+
+.order-mockup-form form input:focus,
+.order-mockup-form form select:focus {
+  border-color: #0f8f42;
+  box-shadow: 0 0 0 3px rgba(15, 143, 66, 0.12);
+}
+
+.quick-trust {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin: 16px 0 18px;
+  text-align: center;
+}
+
+.quick-trust-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  color: #111;
+  font-size: 13px;
+  line-height: 1.25;
+  font-weight: 500;
+}
+
+.trust-icon {
+  width: 28px;
+  height: 28px;
+  border: 1.6px solid #111;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #111;
+  font-size: 17px;
+  line-height: 1;
+}
+
+.order-mockup-form .btn {
+  width: 100%;
+  height: 46px;
+  min-height: 46px;
+  border: none;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #006f35 0%, #2ed36f 100%);
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 900;
+  box-shadow: none;
+  margin-bottom: 12px;
+}
+
+.order-mockup-form .btn:hover {
+  filter: brightness(1.03);
+}
+
+.order-mockup-form .btn:active {
+  transform: scale(0.98);
+}
+
+.order-mockup-form .whatsapp-btn {
+  width: 100%;
+  height: 46px;
+  min-height: 46px;
+  border-radius: 999px;
+  border: 1.5px solid #16b85d;
+  background: #ffffff;
+  color: #087d3c;
+  font-size: 20px;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  box-shadow: none;
+}
+
+.whatsapp-icon {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #20c466;
+  color: #20c466;
+  display: inline-block;
+  position: relative;
+}
+
+.whatsapp-icon::after {
+  content: "☎";
+  position: absolute;
+  inset: 0;
+  color: #ffffff;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bottom-trust {
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  color: #111;
+  font-size: 13px;
+  text-align: center;
+}
+
+.bottom-trust div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  white-space: nowrap;
+}
+
+.bottom-trust span {
+  color: #9a9a9a;
+  font-size: 17px;
+}
+
+@media (max-width: 420px) {
+  .order-mockup-form .form-title {
+    font-size: 27px;
+  }
+
+  .order-mockup-form .form-note {
+    font-size: 15px;
+  }
+
+  .quick-trust-item {
+    font-size: 12px;
+  }
+
+  .bottom-trust {
+    font-size: 11px;
+  }
+}
+
+
+/* === Bouton WhatsApp avec background image === */
+
+.whatsapp-img-btn {
+  display: block;
+  width: 100%;
+  height: 46px;
+  min-height: 46px;
+  border-radius: 999px;
+  background-image: url("/landing-v2/img/whatsapp-btn.webp");
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 999px;
+  border: 1.5px solid #16b85d;
+  overflow: hidden;
+  box-shadow: none;
+  transition: transform 0.15s ease, filter 0.2s ease;
+}
+
+.whatsapp-img-btn:hover {
+  filter: brightness(1.03);
+}
+
+.whatsapp-img-btn:active {
+  transform: scale(0.98);
+}

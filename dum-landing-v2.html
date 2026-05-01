@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title></title>
+
+    <!-- Google Fonts Tajawal -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="landing-v2/css/style.css">
+    <script src="js/tracking.js"></script>
+</head>
+
+<body>
+
+
+    <script src="js/script.js"></script>
+</body>
+<!-- Screen 1 -->
+<main class="screen">
+    <img class="screen__img" src="landing-v2/img/pg1.webp" alt="الشاشة 1">
+</main>
+
+<!-- === Formulaire de commande === -->
+<section id="order-section" class="order-form-section">
+    <div class="form-container order-mockup-form">
+
+        <!-- Titre -->
+        <h2 class="tajawal-bold form-title">
+            اطلب الآن واستفد من العرض الحالي
+        </h2>
+
+        <p class="tajawal-medium form-note">
+            املأ النموذج وسنتصل بك سريعًا لتأكيد طلبك.
+        </p>
+
+        <!-- Formulaire -->
+        <form id="orderForm">
+
+            <input type="text" id="fullName" name="fullName" placeholder="الاسم الكامل" required
+                oninvalid="this.setCustomValidity('الرجاء إدخال الاسم الكامل')" oninput="this.setCustomValidity('')">
+
+            <input dir="rtl" type="tel" id="phone" name="phone" placeholder="رقم الهاتف" required
+                pattern="^\+?\d{10,15}$" oninvalid="this.setCustomValidity('الرجاء إدخال رقم هاتف صحيح')"
+                oninput="this.setCustomValidity('')">
+
+            <input type="text" id="departement" name="departement" placeholder="الولاية" required
+                oninvalid="this.setCustomValidity('الرجاء إدخال الولاية')" oninput="this.setCustomValidity('')">
+
+            <select id="offer" name="offer" class="tajawal-medium" required
+                oninvalid="this.setCustomValidity('الرجاء اختيار الحجم')" oninput="this.setCustomValidity('')">
+                <option value="" selected disabled>إختر الحجم</option>
+                <option value="3kg_offer">باقة 3 كجم (2 كجم + 1 كجم هدية) - 5000 د.ج</option>
+                <option value="500g">500 غرام - 1300 دج</option>
+                <option value="1kg">1 كجم - 2500 دج</option>
+            </select>
+
+            <!-- Hidden fields -->
+            <input type="hidden" name="content_id" value="doum_powder">
+            <input type="hidden" name="content_name" value="مسحوق الدوم">
+            <input type="hidden" name="currency" value="DZD">
+            <input type="hidden" name="price" id="price" value="">
+            <input type="hidden" name="offer_label" id="offer_label" value="">
+
+            <!-- Points de réassurance -->
+            <img src="landing-v2/img/trust-prebuttons.webp" alt="متوفر عبر واتساب - تواصل سريع - الطلب في أقل من دقيقة"
+                class="trust-prebuttons" />
+
+            <button type="submit" class="btn tajawal-bold">
+                إرسال الطلب
+            </button>
+
+            <a href="https://wa.me/213697275528" class="whatsapp-img-btn" target="_blank" rel="noopener"
+                aria-label="واتساب"></a>
+
+        </form>
+
+        <div id="error" class="error" hidden>
+            حدث خطأ أثناء إرسال طلبك. يُرجى التحقق من المعلومات والمحاولة مجددًا.
+        </div>
+
+        <!-- Badges bas -->
+        <img src="landing-v2/img/trust-afterbuttons.webp" alt="بياناتك آمنة - تأكيد سريع للطلب - دعم العملاء جاهز"
+            class="trust-afterbuttons" />
+
+    </div>
+</section>
+
+
+<!-- Screen 2 -->
+<main class="screen">
+    <img class="screen__img" src="landing-v2/img/pg2.webp" alt="الشاشة 2">
+</main>
+
+<!-- Screen 3 -->
+<main class="screen">
+    <img class="screen__img" src="landing-v2/img/pg3.webp" alt="الشاشة 3">
+</main>
+
+<!-- === Rappel CTA Section === -->
+<section class="rappel-cta-section">
+    <div class="rappel-cta-container">
+        <button type="button" class="rappel-cta-btn tajawal-bold scrollToOrder">
+            اطلب الآن
+        </button>
+    </div>
+</section>
+
+<!-- Screen 4 -->
+<main class="screen">
+    <img class="screen__img" src="landing-v2/img/pg4.webp" alt="الشاشة 4">
+</main>
+
+
+<!-- Screen 5 -->
+<main class="screen">
+    <img class="screen__img" src="landing-v2/img/pg5.webp" alt="الشاشة 5">
+</main>
+
+<!-- === Rappel CTA Section === -->
+<section class="rappel-cta-section">
+    <div class="rappel-cta-container">
+        <button type="button" class="rappel-cta-btn tajawal-bold scrollToOrder">
+            اطلب الآن
+        </button>
+    </div>
+</section>
+
+<!-- Screen 6 -->
+<main class="screen">
+    <img class="screen__img" src="landing-v2/img/pg6.webp" alt="الشاشة 6">
+</main>
+
+<!-- Screen 7 -->
+<main class="screen">
+    <img class="screen__img" src="landing-v2/img/pg7.webp" alt="الشاشة 7">
+</main>
+
+
+<!-- === Rappel CTA Section === -->
+<section class="rappel-cta-section">
+    <div class="rappel-cta-container">
+        <button type="button" class="rappel-cta-btn tajawal-bold scrollToOrder">
+            اطلب الآن
+        </button>
+    </div>
+</section>
+
+</html>
