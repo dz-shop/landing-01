@@ -918,7 +918,7 @@ form button.btn {
   height: 46px;
   min-height: 46px;
   border-radius: 999px;
-  background-image: url("/landing-v2/img/whatsapp-btn.webp");
+  background-image: url("../img/whatsapp-btn.webp");
   background-size: 100% 100%;
   background-position: center;
   background-repeat: no-repeat;
